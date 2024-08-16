@@ -1,19 +1,40 @@
 package com.hb.quizapp.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QuestionDTO {
     private int id;
     private String question;
+    private String category;
+    private String difficulty;
+    private List<String> options = new ArrayList<String>();
     private String answer;
 
-
-    public QuestionDTO() {
+    public String getCategory() {
+        return category;
     }
 
-    public QuestionDTO(int id, String question, String answer) {
-        this.id = id;
-        this.question = question;
-        this.answer = answer;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<String> options) {
+        this.options = options;
     }
 
     public int getId() {
@@ -38,5 +59,16 @@ public class QuestionDTO {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public QuestionDTO() {
+    }
+    public QuestionDTO(int id, String question, String answer, List<String> options, String category, String difficulty) {
+        this.id = id;
+        this.question = question;
+        this.answer = answer;
+        this.options = options;
+        this.category = category;
+        this.difficulty = difficulty;
     }
 }
