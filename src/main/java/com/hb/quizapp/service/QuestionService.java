@@ -60,4 +60,14 @@ public class QuestionService {
 
         return Optional.of(convertQuestionToDTO(question));
     }
+
+    public String addQuestion(QuestionDTO questionDTO) {
+        questionRepository.save(convertDTOToQuestion(questionDTO));
+        return "Question added";
+    }
+
+    public String deleteQuestion(int id) {
+        questionRepository.deleteById(id);
+        return "Question deleted";
+    }
 }
