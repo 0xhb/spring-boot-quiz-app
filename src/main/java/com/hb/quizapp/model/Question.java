@@ -13,7 +13,11 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private List<String> options = new ArrayList<String>();
     private String question;
+    private String answer;
+    private String category;
+    private String difficulty;
 
     public String getCategory() {
         return category;
@@ -31,10 +35,7 @@ public class Question {
         this.difficulty = difficulty;
     }
 
-    private String category;
-    private String difficulty;
-    private List<String> options = new ArrayList<String>();
-    private String answer;
+
 
     public List<String> getOptions() {
         return options;

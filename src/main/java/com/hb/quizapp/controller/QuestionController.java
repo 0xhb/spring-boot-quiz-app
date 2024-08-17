@@ -3,13 +3,13 @@ package com.hb.quizapp.controller;
 import com.hb.quizapp.model.QuestionDTO;
 import com.hb.quizapp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/quiz")
+@RequestMapping("/api/question")
 public class QuestionController {
 
     private final QuestionService questionService;
@@ -19,23 +19,28 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
-    @GetMapping("allQuestions")
-    public List<QuestionDTO> getAllQuestions() {
+    @GetMapping("all")
+    public ResponseEntity<List<QuestionDTO>> getAllQuestions() {
         return questionService.getAllQuestions();
     }
 
-    @GetMapping("question/{id}")
-    public Optional<QuestionDTO> getQuestionById(@PathVariable int id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<QuestionDTO> getQuestionById(@PathVariable int id) {
         return questionService.getQuestion(id);
     }
 
-    @PostMapping("question")
-    public String createQuestion(@RequestBody QuestionDTO questionDTO) {
+    @GetMapping("category/{category}")
+    public ResponseEntity<List<QuestionDTO>> getQuestionsByCategory(@PathVariable String category) {
+        return questionService.getByCategory(category);
+    }
+
+    @PostMapping("add")
+    public ResponseEntity<String> createQuestion(@RequestBody QuestionDTO questionDTO) {
         return questionService.addQuestion(questionDTO);
     }
 
-    @DeleteMapping("question/{id}")
-    public String deleteQuestion(@PathVariable int id) {
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<String> deleteQuestion(@PathVariable int id) {
         return questionService.deleteQuestion(id);
     }
 }
